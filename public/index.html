@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Sign-In Disabled Users in Groups Tool</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #1e2024;
+        }
+        .title-bar {
+            background-color: #1e2024;
+            color: #ffffff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .title-bar h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        .filter-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px;
+        }
+        .report-section {
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="title-bar">
+        <h1>Manage Sign-In Disabled Users in Groups Tool</h1>
+        <div>
+            <button class="btn btn-primary" onclick="login()">Login</button>
+            <button class="btn btn-secondary" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filter-section">
+        <select id="groupDropdown" class="form-select" style="width: 200px;">
+            <option value="">Select Group</option>
+        </select>
+        <select id="memberDropdown" class="form-select" style="width: 200px;">
+            <option value="">Select Disabled User</option>
+        </select>
+        <select id="mailEnabledDropdown" class="form-select" style="width: 150px;">
+            <option value="">Mail Enabled</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+        <button class="btn btn-primary" onclick="search()">Search</button>
+    </div>
+
+    <!-- Report Controls -->
+    <div class="report-section">
+        <input id="adminEmail" class="form-control" type="email" placeholder="Admin Email" style="width: 250px;">
+        <button class="btn btn-secondary" onclick="sendReportAsMail()">Mail Report to Admin</button>
+        <button class="btn btn-success" onclick="downloadReportAsCSV()">Download Report as CSV</button>
+    </div>
+
+    <!-- Results Table -->
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr id="outputHeader">
+                    <th>Group</th>
+                    <th>Member Display Name</th>
+                    <th>Member Mail</th>
+                    <th>Group Mail</th>
+                    <th>Group Description</th>
+                    <th>Members</th>
+                </tr>
+            </thead>
+            <tbody id="outputBody"></tbody>
+        </table>
+    </div>
+
+    <!-- JS Libraries -->
+    <script src="https://alcdn.msauth.net/browser/2.24.0/js/msal-browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
